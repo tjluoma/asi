@@ -59,13 +59,13 @@ do
 							shift
 		;;
 
-		-p|--price)
+		-p|--pr*|-$)
 							PRICE=yes
 							ALL=no
 							shift
 		;;
 
-		-r|--rating)
+		-r|--rat*|--star*|--rev*)
 							RATING=yes
 							ALL=no
 							shift
@@ -78,7 +78,7 @@ do
 							shift
 		;;
 
-		-n|--name)
+		-n|--name|--appname)
 							APPNAME=yes
 							ALL=no
 							shift
@@ -90,7 +90,7 @@ do
 							shift
 		;;
 
-		-R|--require*)
+		-R|--req*)
 							REQUIREMENTS=yes
 							ALL=no
 							shift
@@ -104,7 +104,7 @@ do
 		;;
 
 
-		-i|--icon)
+		-i|--icon|--image|--appicon)
 							ICON=yes
 							ALL=no
 							shift
@@ -127,11 +127,11 @@ if [[ "$ALL" != "no" ]]
 then
 	# if the user didn't ask for one specific piece of info, give them everything
 
+		APPNAME=yes
 		DESCRIPTION=yes
 		PRICE=yes
 		RATING=yes
 		SIZE=yes
-		APPNAME=yes
 		DEVELOPER=yes
 		REQUIREMENTS=yes
 		OFFICIAL_URL=yes
@@ -303,15 +303,19 @@ do
 			exit 1
 	fi
 
+	# If you wanted to restrict the output of the app name to ONLY when it was asked for
+	# this is where you would change that, and remove the `get_appname` below
 	# [[ "$APPNAME" == "yes" ]] 		&& get_appname
 
 	get_appname
 
-	[[ "$DEVELOPER" == "yes" ]] 	&& get_developer
-
 	[[ "$DESCRIPTION" == "yes" ]] 	&& get_description
 
+	[[ "$DEVELOPER" == "yes" ]] 	&& get_developer
+
 	[[ "$ICON" == "yes" ]] 			&& get_icon_url
+
+	[[ "$PRICE" == "yes" ]] 		&& get_price
 
 	[[ "$RATING" == "yes" ]] 		&& get_rating
 
@@ -320,8 +324,6 @@ do
 	[[ "$SIZE" == "yes" ]] 			&& get_size
 
 	[[ "$OFFICIAL_URL" == "yes" ]] 	&& get_official_url
-
-	[[ "$PRICE" == "yes" ]] 		&& get_price
 
 
 done
