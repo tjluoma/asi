@@ -110,11 +110,41 @@ do
 							shift
 		;;
 
-		-*)
+		-*|--*)
 
-							echo "$NAME: I don't know what to do with $1"
-							exit 1
+cat <<EOINPUT
+
+Usage:
+$NAME [-n -d -D -i -p -R -s -u ] <URL>
+
+-n, --name : Official name of the app (note: this is always shown, regardless of whether it was specifically requested or not. Use this argument if all you want is the name of the app)
+
+-d, --description : Full description of the app as entered by the developer
+
+-D, --developer : Show the developer name (might be individual or a company)
+
+-i, --icon : Show the URL to the app's image from the app store (Note: this is usually very high resolution)
+
+-$,-p, --price : Price of the app (including 'Free' where applicable)
+
+-r, --rating : Rating of the app, including both Current Version and All Versions, as available
+
+-R, --requirements : Show the hardware and/or OS requirements for the app
+
+-s, --size : Size of the app (how many MB/GB is it)
+
+-u, --url : Show the 'canonical' URL for the app (useful for when someone gives you a 'shortened' version or one that loops through 5 different referral URLs or contains other cruft)
+
+If no arguments are given, it is assumed that the user wants _all_ available information.
+
+See https://github.com/tjluoma/asi for more details.
+
+EOINPUT
+
+exit 0
+
 		;;
+
 
 	esac
 
