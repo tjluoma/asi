@@ -63,13 +63,13 @@ Note that most of the longer arguments can be shortened, i.e. if you use `--dev`
 
 ## Bugs ##
 
-While the user can use more than one of the above arguments, such as:
+While the user can use more than one of the above arguments, those arguments ***much each be separate.***
+
+For example, if you want to see *just* the price and the rating(s), this will work:
 
 	asi.sh -p -r 'http://itunes.apple.com/us/app/quickcursor/id404035899?mt=12'
 
-those arguments ***much each be separate.***
-
-For example, this ***will not work:***
+but ***this will not:***
 
 	asi.sh -pr 'http://itunes.apple.com/us/app/quickcursor/id404035899?mt=12'
 
